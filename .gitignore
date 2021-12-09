@@ -1,2 +1,4 @@
-.DS_STORE
+*.go
 *.swp
+.DS_STORE
+/proto
