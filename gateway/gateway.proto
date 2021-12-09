@@ -6,20 +6,46 @@ option go_package = "../proto";
 service Gateway {
   // request the guild count from one or all shards
   rpc GuildCount(GuildCountRequest) returns (GuildCountResponse);
+  // request the number of shards running and their statuses
+  rpc ShardStats(ShardStatsRequest) returns (ShardStatsResponse);
 }
 
 message GuildCountRequest {
   // the shard to request guild count form.
   // null for all shards
-  optional uint32 Shard = 1;
+  optional uint32 shard = 1;
 }
 
 message GuildCountResponse {
   // the amount of servers the bot is in
-  uint32 GuildCount = 1;
+  uint32 guild_count = 1;
   // which shard the guild count is from
   // null for all shards
-  optional uint32 Shard = 2;
+  optional uint32 shard = 2;
+}
+
+// TODO: should this take a range of shards instead of returning all?
+message ShardStatsRequest {}
+
+message ShardStatsResponse {
+  // a list of shard statistics
+  repeated ShardStats shards = 1;
+}
+
+enum ShardStatus {
+  DISCONNECTED = 0;
+  CONNECTING = 1;
+  CONNECTED = 2;
+  RATELIMITED = 3;
+}
+
+message ShardStats {
+  // the ID of he shard
+  uint32 shard = 1;
+  // the guild count of the shard
+  uint32 guild_count = 2;
+  // the shard's status
+  ShardStatus status = 3;
 }
 
 // vim:si
