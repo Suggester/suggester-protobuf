@@ -1,2 +1,2 @@
 * text eol=lf
-*.proto linguist-language=protobuf
+*.proto linguist-detectable
