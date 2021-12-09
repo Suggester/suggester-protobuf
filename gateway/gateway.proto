@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package gateway;
+option go_package = "../proto";
+
+service Gateway {
+  // request the guild count from one or all shards
+  rpc GuildCount(GuildCountRequest) returns (GuildCountResponse);
+}
+
+message GuildCountRequest {
+  // the shard to request guild count form.
+  // null for all shards
+  optional int32 Shard = 1;
+}
+
+message GuildCountResponse {
+  // the amount of servers the bot is in
+  uint32 GuildCount = 1;
+  // which shard the guild count is from
+  // null for all shards
+  optional int32 Shard = 1;
+}
+
+// vim:si
