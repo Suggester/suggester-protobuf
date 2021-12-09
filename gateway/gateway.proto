@@ -11,7 +11,7 @@ service Gateway {
 message GuildCountRequest {
   // the shard to request guild count form.
   // null for all shards
-  optional int32 Shard = 1;
+  optional uint32 Shard = 1;
 }
 
 message GuildCountResponse {
@@ -19,7 +19,7 @@ message GuildCountResponse {
   uint32 GuildCount = 1;
   // which shard the guild count is from
   // null for all shards
-  optional int32 Shard = 2;
+  optional uint32 Shard = 2;
 }
 
 // vim:si
